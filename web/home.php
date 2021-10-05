@@ -1,6 +1,6 @@
 <?php
     require_once 'data.php';
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +36,7 @@
   </nav>
 </header>
 <main>
+    <!-- @TODO Impelement recently viewed products -->
     <section title="Recently Viewed Products">
         <h2>Recently Viewed Products</h2>
         <div class="product-list">
