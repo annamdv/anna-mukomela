@@ -79,7 +79,7 @@ function catalogGetCategoryProduct(int $categoryId): array
     $categories = catalogGetCategory();
 
     if (!isset($categories[$categoryId])) {
-        throw new InvalidArgumentException(message: "Category with ID $categoryId does not exist");
+        throw new InvalidArgumentException("Category with ID $categoryId does not exist");
     }
 
     $productsForCategory = [];
@@ -87,7 +87,7 @@ function catalogGetCategoryProduct(int $categoryId): array
 
     foreach ($categories[$categoryId]['products'] as $productId) {
         if (!isset($products[$productId])) {
-            throw new InvalidArgumentException(message: "Product with ID $productId from category $categoryId does not exist");
+            throw new InvalidArgumentException("Product with ID $productId from category $categoryId does not exist");
         }
 
         $productsForCategory[] = $products[$productId];
