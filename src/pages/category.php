@@ -1,14 +1,14 @@
-<section title="Products">
-    <h1><?= $data['name'] ?></h1>
-    <div class="product-list">
-        <?php foreach (catalogGetCategoryProduct($data['category_id']) as $product) : ?>
-            <div class="product">
-                <a href="/<?= $product['url'] ?>" title="<?= $product['name'] ?>">
-                    <img src="/product-placeholder.png" alt="<?= $product['name'] ?>" width="200"/>
+<section title="Posts">
+    <h1><?= $data['title'] ?></h1>
+    <div class="ost-list">
+        <?php foreach (catalogGetCategoryPost($data['category_id']) as $data) : ?>
+            <div class="post">
+                <a href="/<?= $data['url'] ?>" title="<?= $data['title'] ?>">
+                    <img src="/post-placeholder.png" alt="<?= $data['title'] ?>" width="200"/>
                 </a>
-                <a href="/<?= $product['url'] ?>" title="<?= $product['name'] ?>"><?= $product['name'] ?></a>
-                <span>$<?= number_format($product['price'], 2) ?></span>
-                <button type="button">Add To Cart</button>
+                <a href="/<?= $data['url'] ?>" title="<?= $data['title'] ?>"><?= $data['title'] ?></a>
+                <a href="/<?= $data['author'] ?>" title="<?= $data['author'] ?>"><?= $data['author'] ?></a>
+                <span>Publishing Date:<?= date($data['publishing date']) ?></span>
             </div>
         <?php endforeach; ?>
     </div>

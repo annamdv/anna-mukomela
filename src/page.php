@@ -12,10 +12,10 @@
         footer {
             border: 1px dashed black;
         }
-        .product-list {
+        .post-list {
             display: flex;
         }
-        .product-list .product {
+        .post-list .post {
             max-width: 30%;
         }
     </style>
@@ -29,7 +29,7 @@
         <ul>
             <?php foreach (catalogGetCategory() as $category) : ?>
                 <li>
-                    <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
+                    <a href="/<?= $category['url'] ?>"><?= $category['title'] ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
