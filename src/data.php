@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function catalogGetCategory(): array
+function blogGetCategory(): array
 {
     return[
         1 => [
@@ -26,7 +26,7 @@ function catalogGetCategory(): array
     ];
 }
 
-function catalogGetPost(): array
+function blogGetPost(): array
 {
     return [
         1 => [
@@ -34,56 +34,56 @@ function catalogGetPost(): array
             'title'                 => 'Post 1',
             'url'                   => 'post-1',
             'author'                => 'Corey Dulimba',
-            'publishing date'       => '06.10.2021'
+            'publishing_date'       => '06.10.2021'
         ],
         2 => [
             'post_id'               => 2,
             'title'                 => 'Post 2',
             'url'                   => 'post-2',
             'author'                => 'Peter Sheldon',
-            'publishing date'       => '15.08.2021'
+            'publishing_date'       => '15.08.2021'
         ],
         3 => [
             'post_id'               => 3,
             'title'                 => 'Post 3',
             'url'                   => 'post-3',
             'author'                => 'Corey Gelato',
-            'publishing date'       => '08.04.2021'
+            'publishing_date'       => '08.04.2021'
         ],
         4 => [
             'post_id'               => 4,
             'title'                 => 'Post 4',
             'url'                   => 'post-4',
             'author'                => 'Corey Dulimba',
-            'publishing date'       => '25.12.2020'
+            'publishing_date'       => '25.12.2020'
         ],
         5 => [
             'post_id'               => 5,
             'title'                 => 'Post 5',
             'url'                   => 'post-5',
             'author'                => 'Peter Sheldon',
-            'publishing date'       => '18.04.2021'
+            'publishing_date'       => '18.04.2021'
         ],
         6 => [
             'post_id'               => 6,
             'title'                 => 'Post 6',
             'url'                   => 'post-6',
             'author'                => 'Corey Gelato',
-            'publishing date'       => '28.01.2021'
+            'publishing_date'       => '28.01.2021'
         ]
     ];
 }
 
-function catalogGetCategoryPost(int $categoryId): array
+function blogGetCategoryPost(int $categoryId): array
 {
-    $categories = catalogGetCategory();
+    $categories = blogGetCategory();
 
     if (!isset($categories[$categoryId])) {
         throw new InvalidArgumentException("Category with ID $categoryId does not exist");
     }
 
     $postsForCategory = [];
-    $posts = catalogGetPost();
+    $posts = blogGetPost();
 
     foreach ($categories[$categoryId]['posts'] as $postId) {
         if (!isset($posts[$postId])) {
@@ -96,10 +96,10 @@ function catalogGetCategoryPost(int $categoryId): array
     return $postsForCategory;
 }
 
-function catalogGetCategoryByUrl(string $url): ?array
+function blogGetCategoryByUrl(string $url): ?array
 {
         $data = array_filter(
-            catalogGetCategory(),
+            blogGetCategory(),
             static function ($category) use ($url) {
                 return $category['url'] === $url;
             }
@@ -108,10 +108,10 @@ function catalogGetCategoryByUrl(string $url): ?array
         return array_pop($data);
 }
 
-function catalogGetPostByUrl(string $url): ?array
+function blogGetPostByUrl(string $url): ?array
 {
     $data = array_filter(
-        catalogGetPost(),
+        blogGetPost(),
         static function ($post) use ($url) {
             return $post['url'] === $url;
         }
@@ -122,10 +122,10 @@ function catalogGetPostByUrl(string $url): ?array
 function blogGetNewPosts(): ?array
 {
     $postsGetNewPost = [];
-    $posts = catalogGetPost();
+    $posts = blogGetPost();
 
     usort($posts, function ($a, $b) {
-        return (strtotime($a['publishing date']) - strtotime($b['publishing date']));
+        return (strtotime($a['publishing_date']) - strtotime($b['publishing_date']));
     });
 
     $postsSlice = array_slice($posts, 0, 3);
