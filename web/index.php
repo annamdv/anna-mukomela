@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
 
-$requestDispatcher = new \Annam\Framework\Http\RequestDispatcher([
-    new \Annam\Cms\Router(),
-    new \Annam\Blog\Router(),
-    new \Annam\ContactUs\Router(),
-]);
-$requestDispatcher->dispatch();
+$containerBuilder = new \DI\ContainerBuilder();
 
-exit;
+try{
+    $containerBuilder->addDefinitions('../config/di.php');
+    $container = $containerBuilder->build();
+    /** @var \Annam\Framework\Http\RequestDispatcher $requestDispatcher */
+    $requestDispatcher = $container->get(\Annam\Framework\Http\RequestDispatcher::class);
+    $requestDispatcher->dispatch();
+} catch (\Exception $e) {
+    echo "{$e->getMessage()} in file {$e->getFile()} at line {$e->getLine()}";
+    exit(1);
+}
