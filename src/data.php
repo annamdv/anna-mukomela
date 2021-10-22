@@ -2,30 +2,6 @@
 
 declare(strict_types=1);
 
-function blogGetCategory(): array
-{
-    return[
-        1 => [
-            'category_id' => 1,
-            'title'        => 'Best Practices',
-            'url'         => 'best-practices',
-            'posts'    => [1, 2, 3]
-        ],
-        2 => [
-            'category_id' => 2,
-            'title'        => 'Customer Stories',
-            'url'         => 'customer-stories',
-            'posts'    => [3, 4, 5]
-        ],
-        3 => [
-            'category_id' => 3,
-            'title'        => 'Marketplace',
-            'url'         => 'Marketplace',
-            'posts'    => [2, 4, 6]
-        ]
-    ];
-}
-
 function blogGetPost(): array
 {
     return [
@@ -94,18 +70,6 @@ function blogGetCategoryPost(int $categoryId): array
     }
 
     return $postsForCategory;
-}
-
-function blogGetCategoryByUrl(string $url): ?array
-{
-        $data = array_filter(
-            blogGetCategory(),
-            static function ($category) use ($url) {
-                return $category['url'] === $url;
-            }
-        );
-
-        return array_pop($data);
 }
 
 function blogGetPostByUrl(string $url): ?array

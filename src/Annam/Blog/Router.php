@@ -11,13 +11,18 @@ class Router implements \Annam\Framework\Http\RouterInterface
 {
     private \Annam\Framework\Http\Request $request;
 
+    private Model\Category\Repository $categoryRepository;
+
     /**
-     * @param  \Annam\Framework\Http\Request $request
+     * @param \Annam\Framework\Http\Request $request
+     * @param Model\Category\Repository $categoryRepository
      */
     public function __construct(
-        \Annam\Framework\Http\Request $request
+        \Annam\Framework\Http\Request $request,
+        \Annam\Blog\Model\Category\Repository $categoryRepository
     ) {
         $this->request = $request;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -27,13 +32,13 @@ class Router implements \Annam\Framework\Http\RouterInterface
     {
         require_once '../src/data.php';
 
-        if ($data = blogGetCategoryByUrl($requestUrl)) {
-            $this->request->setParameter ('category', $data);
+        if ($category = $this->categoryRepository->getByUrl($requestUrl)) {
+            $this->request->setParameter('category', $category);
             return Category::class;
         }
 
         if ($data = blogGetPostByUrl($requestUrl)) {
-            $this->request->setParameter ('post', $data);
+            $this->request->setParameter('post', $data);
             return Post::class;
         }
 

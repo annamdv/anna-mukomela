@@ -1,14 +1,17 @@
+<?php
+/** * @var \Annam\Catalog\Model\Category\Entity $category */
+?>
 <section title="Posts">
-    <h1><?= $data['title'] ?></h1>
-    <div class="ost-list">
-        <?php foreach (blogGetCategoryPost($data['category_id']) as $data) : ?>
+    <h1><?= $category->getTitle() ?></h1>
+    <div class="post-list">
+        <?php foreach (blogGetCategoryPost($category->getCategoryId) as $post) : ?>
             <div class="post">
-                <a href="/<?= $data['url'] ?>" title="<?= $data['title'] ?>">
-                    <img src="/post-placeholder.png" alt="<?= $data['title'] ?>" width="200"/><br>
+                <a href="/<?= $post['url'] ?>" title="<?= $post['title'] ?>">
+                    <img src="/post-placeholder.png" alt="<?= $post['title'] ?>" width="200"/><br>
                 </a>
-                <a href="/<?= $data['url'] ?>" title="<?= $data['title'] ?>"><?= $data['title'] ?></a>
-                <div>Author: <a href="/<?= $data['author'] ?>" title="<?= $data['author'] ?>"><?= $data['author'] ?></a></div>
-                <span>Publishing Date: <?= date($data['publishing_date']) ?></span>
+                <a href="/<?= $post['url'] ?>" title="<?= $post['title'] ?>"><?= $post['title'] ?></a>
+                <div>Author: <a href="/<?= $post['author'] ?>" title="<?= $post['author'] ?>"><?= $post['author'] ?></a></div>
+                <span>Publishing Date: <?= date($post['publishing_date']) ?></span>
             </div>
         <?php endforeach; ?>
     </div>
