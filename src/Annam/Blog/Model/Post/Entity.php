@@ -1,34 +1,36 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Annam\Blog\Model\Category;
+namespace Annam\Blog\Model\Post;
 
 class Entity
 {
-    private int $categoryId;
+    private int $postId;
 
     private string $title;
 
     private string $url;
 
-    private array $posts;
+    private string $author;
+
+    private string $publishingDate;
 
     /**
      * @return int
      */
-    public function getCategoryId(): int
+    public function getPostId(): int
     {
-        return $this->categoryId;
-
+        return $this->postId;
     }
 
     /**
-     * @param int $categoryId
+     * @param int $postId
      * @return $this
      */
-    public function setCategoryId(int $categoryId): Entity
+    public function setPostId(int $postId): Entity
     {
-        $this->categoryId = $categoryId;
+        $this->postId = $postId;
 
         return $this;
     }
@@ -72,20 +74,39 @@ class Entity
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getPostIds(): array
+    public function getAuthor(): string
     {
-        return $this->posts;
+        return $this->author;
     }
 
     /**
-     * @param array $posts
+     * @param string $author
      * @return $this
      */
-    public function setPostIds(array $posts): Entity
+    public function setAuthor(string $author): Entity
     {
-        $this->posts = $posts;
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPublishingDate(): string
+    {
+        return $this->publishingDate;
+    }
+
+    /**
+     * @param string $publishingDate
+     * @return $this
+     */
+    public function setPublishingDate(string $publishingDate): Entity
+    {
+        $this->publishingDate = $publishingDate;
 
         return $this;
     }

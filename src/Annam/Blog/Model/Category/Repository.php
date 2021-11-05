@@ -25,17 +25,17 @@ class Repository
                 ->setCategoryId(1)
                 ->setTitle('Best Practices')
                 ->setUrl('best-practices')
-                ->setPosts([1, 2, 3]),
+                ->setPostIds([1, 2, 3]),
             2 => $this->makeEntity()
                 ->setCategoryId(1)
                 ->setTitle('Customer Stories')
                 ->setUrl('customer-stories')
-                ->setPosts([3, 4, 5]),
+                ->setPostIds([3, 4, 5]),
             3 => $this->makeEntity()
                 ->setCategoryId(1)
                 ->setTitle('Marketplace')
                 ->setUrl('Marketplace')
-                ->setPosts([2, 4, 6]),
+                ->setPostIds([2, 4, 6]),
         ];
     }
 

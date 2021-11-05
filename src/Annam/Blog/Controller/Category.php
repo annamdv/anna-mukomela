@@ -1,27 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Annam\Blog\Controller;
+
+use Annam\Framework\Http\ControllerInterface;
+use Annam\Framework\Http\Response\Raw;
 
 class Category implements \Annam\Framework\Http\ControllerInterface
 {
-    private \Annam\Framework\Http\Request $request;
+    private \Annam\Framework\View\PageResponse $pageResponse;
 
     /**
-     * @param \Annam\Framework\Http\Request $request
+     * @param \Annam\Framework\View\PageResponse $pageResponse
      */
     public function __construct(
-        \Annam\Framework\Http\Request $request
+        \Annam\Framework\View\PageResponse $pageResponse
     ) {
-        $this->request = $request;
+        $this->pageResponse = $pageResponse;
     }
 
-    public function execute(): string
-    {
-        $category = $this->request->getParameter('category');
-        $page = 'category.php';
+    /**
+     * @return Raw
+     */
 
-        ob_start();
-        require_once "../src/page.php";
-        return ob_get_clean();
+    public function execute(): Raw
+    {
+        return $this->pageResponse->setBody(\Annam\Blog\Block\Category::class);
     }
 }

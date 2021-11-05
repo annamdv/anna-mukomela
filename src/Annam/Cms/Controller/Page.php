@@ -4,25 +4,36 @@ declare(strict_types=1);
 
 namespace Annam\Cms\Controller;
 
+use Annam\Framework\Http\Response\Raw;
+use Annam\Framework\View\Block;
+
 class Page implements \Annam\Framework\Http\ControllerInterface
 {
     private \Annam\Framework\Http\Request  $request;
 
+    private \Annam\Framework\View\PageResponse $pageResponse;
+
     /**
-     * @param \DVCampus\Framework\Http\Request $request
+     * @param \Annam\Framework\Http\Request $request
+     * @param \Annam\Framework\View\PageResponse $pageResponse
      */
     public function  __construct(
-        \Annam\Framework\Http\Request $request
+        \Annam\Framework\Http\Request $request,
+        \Annam\Framework\View\PageResponse $pageResponse
     ) {
+        $this->pageResponse = $pageResponse;
         $this->request = $request;
     }
 
-    public function execute(): string
-    {
-        $page = $this->request->getParameter('page') . '.php';
+    /**
+     * @return Raw
+     */
 
-        ob_start();
-        require_once "../src/page.php";
-        return ob_get_clean();
+    public function execute(): Raw
+    {
+        return $this->pageResponse->setBody(
+            Block::class,
+            '../src/Annam/Cms/view/' . $this->request->getParameter('page') . '.php'
+        );
     }
 }
