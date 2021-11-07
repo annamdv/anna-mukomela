@@ -8,7 +8,7 @@ use Annam\Framework\Http\ControllerInterface;
 use Annam\Framework\Http\Response\Raw;
 use Annam\Framework\View\Block;
 
-class Form implements \Annam\Framework\Http\ControllerInterface
+class Form implements ControllerInterface
 {
     private \Annam\Framework\View\PageResponse $pageResponse;
 

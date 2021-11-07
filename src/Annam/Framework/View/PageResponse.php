@@ -23,8 +23,8 @@ class PageResponse extends Html
      * @param string $template
      * @return PageResponse
      */
-    public function setBody(string $contentBlocClass, string $template = ''): PageResponse
+    public function setBody(string $contentBlockClass, string $template = ''): PageResponse
     {
-        return parent::setBody((string) $this->renderer->setContent($contentBlocClass, $template));
+        return parent::setBody((string) $this->renderer->setContent($contentBlockClass, $template));
     }
 }

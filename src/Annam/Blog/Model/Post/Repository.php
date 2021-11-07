@@ -25,32 +25,32 @@ class Repository
             1 => $this->makeEntity()->setPostId(1)
                 ->setTitle('Post 1')
                 ->setUrl('post-1')
-                ->setAuthor('Corey Dulimba')
+                ->setAuthorId(1)
                 ->setPublishingDate('2021-10-06'),
             2 => $this->makeEntity()->setPostId(2)
                 ->setTitle('Post 2')
                 ->setUrl('post-2')
-                ->setAuthor('Peter Sheldon')
+                ->setAuthorId(2)
                 ->setPublishingDate('2021-08-15'),
             3 => $this->makeEntity()->setPostId(3)
                 ->setTitle('Post 3')
                 ->setUrl('post-3')
-                ->setAuthor('Corey Gelato')
+                ->setAuthorId(3)
                 ->setPublishingDate('2021-04-08'),
             4 => $this->makeEntity()->setPostId(4)
                 ->setTitle('Post 4')
                 ->setUrl('post-4')
-                ->setAuthor('Corey Dulimba')
+                ->setAuthorId(1)
                 ->setPublishingDate('2020-12-25'),
             5 => $this->makeEntity()->setPostId(5)
                 ->setTitle('Post 5')
                 ->setUrl('post-5')
-                ->setAuthor('Peter Sheldon')
+                ->setAuthorId(2)
                 ->setPublishingDate('2021-04-18'),
             6 => $this->makeEntity()->setPostId(6)
                 ->setTitle('Post 6')
                 ->setUrl('post-6')
-                ->setAuthor('Corey Gelato')
+                ->setAuthorId(3)
                 ->setPublishingDate('2021-01-28')
         ];
     }
@@ -75,11 +75,25 @@ class Repository
      * @param array $postIds
      * @return Entity[]
      */
-    public function getByIds(array $postIds)
+    public function getByIds(array $postIds): array
     {
         return array_intersect_key(
             $this->getList(),
             array_flip($postIds)
+        );
+    }
+
+    /**
+     * @param int $authorId
+     * @return array
+     */
+    public function getByAuthorId(int $authorId): array
+    {
+        return array_filter(
+            $this->getList(),
+            static function ($post) use ($authorId) {
+                return $post->getAuthorId() === $authorId;
+            }
         );
     }
 

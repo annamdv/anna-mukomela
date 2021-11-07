@@ -1,6 +1,9 @@
 <?php
+
 /** * @var \Annam\Blog\Block\Category $block */
+
 ?>
+
 <div title="Posts">
     <h1><?= $block->getCategory()->getTitle() ?></h1>
     <div class="post-list">
@@ -10,8 +13,13 @@
                     <img src="/post-placeholder.png" alt="<?= $post->getTitle() ?>" width="200"/><br>
                 </a>
                 <a href="/<?= $post->getUrl() ?>" title="<?= $post->getTitle() ?>"><?= $post->getTitle() ?></a>
-                <div>Author: <a href="/<?= $post->getAuthor() ?>" title="<?= $post->getAuthor() ?>"><?= $post->getAuthor() ?></a></div>
-                <span>Publishing Date: <?= date($post->getPublishingDate()) ?></span>
+                <?php $author = $block->getPostAuthor($post);
+                if ($author) : ?>
+                    <a href="/<?= $author->getUrl() ?>" class="author-name">Author: <?= $author->getName() ?></a>
+                <?php else : ?>
+                    <span>No author</span>
+                <?php endif ?>
+                <span>Publishing Date: <?= $post->getPublishingDate() ?></span>
             </div>
         <?php endforeach; ?>
     </div>

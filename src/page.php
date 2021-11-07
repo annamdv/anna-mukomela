@@ -1,6 +1,9 @@
 <?php
+
 /** @var \Annam\Framework\View\Renderer $this */
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

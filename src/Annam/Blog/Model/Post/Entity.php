@@ -12,9 +12,9 @@ class Entity
 
     private string $url;
 
-    private string $author;
-
     private string $publishingDate;
+
+    private int $authorId;
 
     /**
      * @return int
@@ -76,25 +76,6 @@ class Entity
     /**
      * @return string
      */
-    public function getAuthor(): string
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param string $author
-     * @return $this
-     */
-    public function setAuthor(string $author): Entity
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getPublishingDate(): string
     {
         return $this->publishingDate;
@@ -107,6 +88,25 @@ class Entity
     public function setPublishingDate(string $publishingDate): Entity
     {
         $this->publishingDate = $publishingDate;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAuthorId(): int
+    {
+        return $this->authorId;
+    }
+
+    /**
+     * @param int $authorId
+     * @return $this
+     */
+    public function setAuthorId(int $authorId): Entity
+    {
+        $this->authorId = $authorId;
 
         return $this;
     }

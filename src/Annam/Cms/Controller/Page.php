@@ -9,7 +9,7 @@ use Annam\Framework\View\Block;
 
 class Page implements \Annam\Framework\Http\ControllerInterface
 {
-    private \Annam\Framework\Http\Request  $request;
+    private \Annam\Framework\Http\Request $request;
 
     private \Annam\Framework\View\PageResponse $pageResponse;
 
@@ -17,7 +17,7 @@ class Page implements \Annam\Framework\Http\ControllerInterface
      * @param \Annam\Framework\Http\Request $request
      * @param \Annam\Framework\View\PageResponse $pageResponse
      */
-    public function  __construct(
+    public function __construct(
         \Annam\Framework\Http\Request $request,
         \Annam\Framework\View\PageResponse $pageResponse
     ) {

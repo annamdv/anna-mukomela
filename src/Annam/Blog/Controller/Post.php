@@ -5,7 +5,7 @@ namespace Annam\Blog\Controller;
 use Annam\Framework\Http\ControllerInterface;
 use Annam\Framework\Http\Response\Raw;
 
-class Post implements \Annam\Framework\Http\ControllerInterface
+class Post implements ControllerInterface
 {
     private \Annam\Framework\View\PageResponse $pageResponse;
 

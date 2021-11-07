@@ -45,14 +45,14 @@ class Repository
      */
     public function getByUrl(string $url): ?Entity
     {
-        $data = array_filter(
+        $categories = array_filter(
             $this->getList(),
             static function ($category) use ($url) {
                 return $category->getUrl() === $url;
             }
         );
 
-        return array_pop($data);
+        return array_pop($categories);
     }
 
     /**
