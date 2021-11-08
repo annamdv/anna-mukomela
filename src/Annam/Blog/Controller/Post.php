@@ -1,25 +1,29 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Annam\Blog\Controller;
 
-class Post implements \Annam\Framework\Http\ControllerInterface
+use Annam\Framework\Http\ControllerInterface;
+use Annam\Framework\Http\Response\Raw;
+
+class Post implements ControllerInterface
 {
-    private \Annam\Framework\Http\Request $request;
+    private \Annam\Framework\View\PageResponse $pageResponse;
+
+    /**
+     * @param \Annam\Framework\View\PageResponse $pageResponse
+     */
     public function __construct(
-        \Annam\Framework\Http\Request $request
+        \Annam\Framework\View\PageResponse $pageResponse
     ) {
-        $this->request = $request;
+        $this->pageResponse = $pageResponse;
     }
 
-    public function execute(): string
-    {
-        $data = $this->request->getParameter('post');
-        $page = 'post.php';
+    /**
+     * @return Raw
+     */
 
-        ob_start();
-        require_once "../src/page.php";
-        return ob_get_clean();
+    public function execute(): Raw
+    {
+        return $this->pageResponse->setBody(\Annam\Blog\Block\Post::class);
     }
 }

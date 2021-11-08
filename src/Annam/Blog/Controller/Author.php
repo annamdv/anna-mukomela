@@ -7,7 +7,7 @@ namespace Annam\Blog\Controller;
 use Annam\Framework\Http\ControllerInterface;
 use Annam\Framework\Http\Response\Raw;
 
-class Category implements ControllerInterface
+class Author implements ControllerInterface
 {
     private \Annam\Framework\View\PageResponse $pageResponse;
 
@@ -23,9 +23,8 @@ class Category implements ControllerInterface
     /**
      * @return Raw
      */
-
     public function execute(): Raw
     {
-        return $this->pageResponse->setBody(\Annam\Blog\Block\Category::class);
+        return $this->pageResponse->setBody(\Annam\Blog\Block\Author::class);
     }
 }

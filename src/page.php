@@ -1,6 +1,9 @@
 <?php
-    require_once '../src/data.php';
+
+/** @var \Annam\Framework\View\Renderer $this */
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,18 +29,14 @@
         <img src="logo.jpg" alt="{DV.Campus} Logo" width="200"/>
     </a>
     <nav>
-        <ul>
-            <?php foreach (blogGetCategory() as $category) : ?>
-                <li>
-                    <a href="/<?= $category['url'] ?>"><?= $category['title'] ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?= $this->render(\Annam\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
+
 <main>
-    <?php require_once "../src/pages/$page" ?>
+    <?= $this->render($this->getContent(), $this->getContentBlockTemplate()) ?>
 </main>
+
 <footer>
     <nav>
         <ul>
