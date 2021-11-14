@@ -3,3 +3,4 @@
 /var/log/*
 !/var/log/.gitkeep
 /vendor/
+auth.json
