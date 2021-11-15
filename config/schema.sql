@@ -1,12 +1,27 @@
 DROP TABLE IF EXISTS `category_post`;
 #---
-DROP TABLE IF EXISTS `daily_statistics`;
+DROP TABLE IF EXISTS `category`;
 #---
-DROP TABLE IF EXISTS `author`;
+DROP TABLE IF EXISTS `daily_statistics`;
 #---
 DROP TABLE IF EXISTS `post`;
 #---
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `author`;
+#---
+CREATE TABLE `author`
+(
+    `author_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Author ID',
+    `name` varchar(127) NOT NULL COMMENT 'Name',
+    `url` varchar(127) NOT NULL COMMENT 'URL',
+    PRIMARY KEY (`author_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='Author Entity';
+#---
+INSERT INTO `author` (`name`, `url`)
+VALUES ('Corey Dulimba', 'corey-dulimba'),
+       ('Peter Sheldon', 'peter-sheldon'),
+       ('Corey Gelato', 'corey-gelato'),
+       ('Ken Hicks', 'ken-hicks'),
+       ('Nicole Teriaca', 'nicole-teriaca');
 #---
 CREATE TABLE `post` (
     `post_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Post ID',
@@ -21,7 +36,7 @@ ALTER TABLE `post`
         COMMENT 'Created At' AFTER `url`,
     ADD COLUMN `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
-        COMMENT 'Updated At' AFTER `created_at`;
+        COMMENT 'Updated At' AFTER `created_at`,
     ADD CONSTRAINT `FK_AUTHOR_ID` FOREIGN KEY (`author_id`)
     REFERENCES `author` (`author_id`) ON DELETE SET NULL;
 #---
@@ -78,21 +93,6 @@ VALUES (1, 1), (1, 3), (1, 5), (1, 7),
        (4, 3), (4, 5), (4, 11), (4, 14),
        (5, 7), (5, 10), (5, 12), (5, 15);
 #---
-CREATE TABLE `author`
-(
-    `author_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Author ID',
-    `name` varchar(127) NOT NULL COMMENT 'Name',
-    `url` varchar(127) NOT NULL COMMENT 'URL',
-    PRIMARY KEY (`author_id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='Author Entity';
-#---
-INSERT INTO `author` (`name`, `url`)
-VALUES ('Corey Dulimba', 'corey-dulimba'),
-       ('Peter Sheldon', 'peter-sheldon'),
-       ('Corey Gelato', 'corey-gelato'),
-       ('Ken Hicks', 'ken-hicks'),
-       ('Nicole Teriaca', 'nicole-teriaca');
-#---
 CREATE TABLE `daily_statistics`
 (
     `statistics_date_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -104,7 +104,7 @@ CREATE TABLE `daily_statistics`
 #--
 ALTER TABLE `daily_statistics`
     ADD CONSTRAINT `FK_DS_POST_ID` FOREIGN KEY (`post_id`)
-        REFERENCES `post` (`post_id`) ON DELETE CASCADE;
+    REFERENCES `post` (`post_id`) ON DELETE CASCADE;
 #---
 INSERT INTO `daily_statistics` (`statistics_date`, `post_id`, `views`)
 VALUES ('2021-11-13', 1, 1),
