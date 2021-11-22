@@ -17,11 +17,11 @@ CREATE TABLE `author`
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='Author Entity';
 #---
 INSERT INTO `author` (`name`, `url`)
-VALUES ('Corey Dulimba', 'corey-dulimba'),
-       ('Peter Sheldon', 'peter-sheldon'),
-       ('Corey Gelato', 'corey-gelato'),
-       ('Ken Hicks', 'ken-hicks'),
-       ('Nicole Teriaca', 'nicole-teriaca');
+VALUES (1, 'Corey Dulimba', 'corey-dulimba'),
+       (2, 'Peter Sheldon', 'peter-sheldon'),
+       (3, 'Corey Gelato', 'corey-gelato'),
+       (4, 'Ken Hicks', 'ken-hicks'),
+       (5, 'Nicole Teriaca', 'nicole-teriaca');
 #---
 CREATE TABLE `post` (
     `post_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Post ID',
